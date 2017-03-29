@@ -16,9 +16,9 @@ def _eval(path_to_lmdb_dir, path_to_evaluate_checkpoint_file):
 
 
 def main(args):
-    path_to_train_lmdb_dir = os.path.join(args.data_dir, 'train')
-    path_to_val_lmdb_dir = os.path.join(args.data_dir, 'val')
-    path_to_test_lmdb_dir = os.path.join(args.data_dir, 'test')
+    path_to_train_lmdb_dir = os.path.join(args.data_dir, 'train.lmdb')
+    path_to_val_lmdb_dir = os.path.join(args.data_dir, 'val.lmdb')
+    path_to_test_lmdb_dir = os.path.join(args.data_dir, 'test.lmdb')
     path_to_evaluate_checkpoint_file = args.checkpoint
 
     print 'Start evaluating'

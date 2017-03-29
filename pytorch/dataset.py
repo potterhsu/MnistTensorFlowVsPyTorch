@@ -28,5 +28,4 @@ class Dataset(data.Dataset):
 
         label = example.label
 
-
         return image, label

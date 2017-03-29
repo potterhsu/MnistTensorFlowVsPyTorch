@@ -113,9 +113,9 @@ def main(args):
     path_to_test_images_file = os.path.join(args.data_dir, 't10k-images-idx3-ubyte.gz')
     path_to_test_labels_file = os.path.join(args.data_dir, 't10k-labels-idx1-ubyte.gz')
 
-    path_to_train_lmdb_dir = os.path.join(args.data_dir, 'train')
-    path_to_val_lmdb_dir = os.path.join(args.data_dir, 'val')
-    path_to_test_lmdb_dir = os.path.join(args.data_dir, 'test')
+    path_to_train_lmdb_dir = os.path.join(args.data_dir, 'train.lmdb')
+    path_to_val_lmdb_dir = os.path.join(args.data_dir, 'val.lmdb')
+    path_to_test_lmdb_dir = os.path.join(args.data_dir, 'test.lmdb')
     path_to_lmdb_meta_file = os.path.join(args.data_dir, 'lmdb_meta.json')
 
     for path_to_dir in [path_to_train_lmdb_dir, path_to_val_lmdb_dir, path_to_test_lmdb_dir]:
