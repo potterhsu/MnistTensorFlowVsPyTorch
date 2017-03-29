@@ -13,15 +13,22 @@
 3. Train
 
     ```
-    $ python train.py --data_dir ../data --train_logdir ./logs/train
+    $ python train.py --data_dir ../data --logdir ./logs
     ```
 
 4. Evaluate
 
     ```
-    $ python eval.py --data_dir ../data ./logs/train/model-100.tar
+    $ python eval.py --data_dir ../data ./logs/model-100.tar
     ```
 
-5. Try to make an inference (Optional)
+5. Visualize
+
+    ```
+    $ python -m visdom.server
+    $ python visualize.py --logdir ./logs
+    ```
+
+6. Try to make an inference (Optional)
 
     Open `inference_sample.ipynb` in Jupyter
