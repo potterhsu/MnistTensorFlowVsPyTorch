@@ -22,6 +22,7 @@ parser.add_argument('-r', '--restore_checkpoint', default=None,
 def _loss(logits, labels):
     return torch.nn.functional.cross_entropy(logits, labels)
 
+
 def _train(path_to_train_lmdb_dir, path_to_val_lmdb_dir, path_to_log_dir,
            path_to_restore_checkpoint_file):
     batch_size = 64
