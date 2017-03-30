@@ -19,6 +19,9 @@ parser.add_argument('-r', '--restore_checkpoint', default=None,
                     help='path to restore checkpoint, e.g. ./logs/model-100.tar')
 
 
+def _loss(logits, labels):
+    return torch.nn.functional.cross_entropy(logits, labels)
+
 def _train(path_to_train_lmdb_dir, path_to_val_lmdb_dir, path_to_log_dir,
            path_to_restore_checkpoint_file):
     batch_size = 64
@@ -52,7 +55,7 @@ def _train(path_to_train_lmdb_dir, path_to_val_lmdb_dir, path_to_log_dir,
             start_time = time.time()
             images, labels = Variable(images), Variable(labels)
             logits = model.train()(images)
-            loss = torch.nn.functional.cross_entropy(logits, labels)
+            loss = _loss(logits, labels)
 
             optimizer.zero_grad()
             loss.backward()
