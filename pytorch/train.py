@@ -41,7 +41,11 @@ def _train(path_to_train_lmdb_dir, path_to_val_lmdb_dir, path_to_log_dir,
     evaluator = Evaluator(path_to_val_lmdb_dir)
     optimizer = optim.Adam(model.parameters(), lr=1e-4)
 
-    losses = np.empty([0], dtype=np.float32)
+    path_to_losses_npy_file = os.path.join(path_to_log_dir, 'losses.npy')
+    if os.path.isfile(path_to_losses_npy_file):
+        losses = np.load(path_to_losses_npy_file)
+    else:
+        losses = np.empty([0], dtype=np.float32)
 
     while True:
         for batch_idx, (images, labels) in enumerate(train_loader):
@@ -66,7 +70,7 @@ def _train(path_to_train_lmdb_dir, path_to_val_lmdb_dir, path_to_log_dir,
                 continue
 
             losses = np.append(losses, loss.data.numpy())
-            np.save(os.path.join(path_to_log_dir, 'losses.npy'), losses)
+            np.save(path_to_losses_npy_file, losses)
 
             print '=> Evaluating on validation dataset...'
             accuracy = evaluator.evaluate(model)

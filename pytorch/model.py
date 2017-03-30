@@ -11,12 +11,15 @@ class Model(nn.Module):
         super(Model, self).__init__()
         self._features = nn.Sequential(
             nn.Conv2d(1, 32, 5),
+            nn.ReLU(),
             nn.MaxPool2d(2),
             nn.Conv2d(32, 64, 5),
+            nn.ReLU(),
             nn.MaxPool2d(2),
         )
         self._classifier = nn.Sequential(
             nn.Linear(64 * 4 * 4, 1024),
+            nn.ReLU(),
             nn.Dropout(),
             nn.Linear(1024, 10)
         )
