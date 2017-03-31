@@ -6,7 +6,7 @@
     $ python convert_to_lmdb.py --data_dir ../data
     ```
 
-1. Test for reading LMDBs (Optional)
+1. (Optional) Test for reading LMDBs
 
     Open `read_lmdb_sample.ipynb` in Jupyter
 
@@ -35,7 +35,7 @@
     $ python visualize.py --logdir ./logs
     ```
 
-1. Try to make an inference (Optional)
+1. (Optional) Try to make an inference
 
     Open `inference_sample.ipynb` in Jupyter
     
