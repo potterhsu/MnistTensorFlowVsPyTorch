@@ -12,7 +12,7 @@ class Evaluator(object):
         num_correct = 0
 
         for batch_idx, (images, labels) in enumerate(self._loader):
-            images, labels = Variable(images, volatile=True), Variable(labels)
+            images, labels = Variable(images.cuda(), volatile=True), Variable(labels.cuda())
             logits = model(images)
             predictions = logits.data.max(1)[1]
             num_correct += predictions.eq(labels.data).cpu().sum()

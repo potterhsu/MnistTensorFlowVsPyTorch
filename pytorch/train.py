@@ -36,6 +36,7 @@ def _train(path_to_train_lmdb_dir, path_to_val_lmdb_dir, path_to_log_dir,
     duration = 0.0
 
     model = Model()
+    model.cuda()
     if path_to_restore_checkpoint_file is not None:
         assert os.path.isfile(path_to_restore_checkpoint_file), '%s not found' % path_to_restore_checkpoint_file
         step = model.load(path_to_restore_checkpoint_file)
@@ -54,7 +55,7 @@ def _train(path_to_train_lmdb_dir, path_to_val_lmdb_dir, path_to_log_dir,
     while True:
         for batch_idx, (images, labels) in enumerate(train_loader):
             start_time = time.time()
-            images, labels = Variable(images), Variable(labels)
+            images, labels = Variable(images.cuda()), Variable(labels.cuda())
             logits = model.train()(images)
             loss = _loss(logits, labels)
 
@@ -73,7 +74,7 @@ def _train(path_to_train_lmdb_dir, path_to_val_lmdb_dir, path_to_log_dir,
             if step % num_steps_to_check != 0:
                 continue
 
-            losses = np.append(losses, loss.data.numpy())
+            losses = np.append(losses, loss.cpu().data.numpy())
             np.save(path_to_losses_npy_file, losses)
 
             print '=> Evaluating on validation dataset...'

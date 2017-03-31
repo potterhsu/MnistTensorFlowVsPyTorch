@@ -81,16 +81,24 @@ def convert_to_lmdb(path_to_images_file_and_labels_file_tuples,
 
     for path_to_images_file, path_to_labels_file in path_to_images_file_and_labels_file_tuples:
         example_reader = ExampleReader(path_to_images_file, path_to_labels_file)
-        while True:
-            example = example_reader.read_and_convert()
-            if example is None:
-                break
+        finished = False
+        while not finished:
+            txns = [writer.begin(write=True) for writer in writers]
 
-            idx = choose_writer_callback(path_to_lmdb_dirs)
-            with writers[idx].begin(write=True) as txn:
+            for _ in xrange(10000):
+                idx = choose_writer_callback(path_to_lmdb_dirs)
+                txn = txns[idx]
+
+                example = example_reader.read_and_convert()
+                if example is None:
+                    finished = True
+                    break
+
                 str_id = '{:08}'.format(num_examples[idx] + 1)
                 txn.put(str_id, example.SerializeToString())
-            num_examples[idx] += 1
+                num_examples[idx] += 1
+
+            [txn.commit() for txn in txns]
 
     for writer in writers:
         writer.close()
