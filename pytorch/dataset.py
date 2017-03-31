@@ -10,7 +10,7 @@ class Dataset(data.Dataset):
         self._reader = lmdb.open(path_to_lmdb_dir)
         with self._reader.begin() as txn:
             self._length = txn.stat()['entries']
-            self._keys = self._keys = [key for key, _ in txn.cursor()]
+            self._keys = [key for key, _ in txn.cursor()]
 
     def __len__(self):
         return self._length
