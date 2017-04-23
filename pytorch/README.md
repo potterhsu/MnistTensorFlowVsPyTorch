@@ -1,3 +1,10 @@
+## Requirements
+
+* Python 2.7
+* PyTorch
+* LMDB
+* Visdom
+
 ## Usage
 
 1. Convert to LMDB format
@@ -8,7 +15,9 @@
 
 1. (Optional) Test for reading LMDBs
 
+    ```
     Open `read_lmdb_sample.ipynb` in Jupyter
+    ```
 
 1. Train
 
@@ -37,7 +46,9 @@
 
 1. (Optional) Try to make an inference
 
+    ```
     Open `inference_sample.ipynb` in Jupyter
+    ```
     
 1. Clean
 
