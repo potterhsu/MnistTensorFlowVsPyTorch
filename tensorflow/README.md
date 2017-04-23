@@ -1,3 +1,8 @@
+## Requirements
+
+* Python 2.7
+* Tensorflow
+
 ## Usage
 
 1. Convert to TFRecords format
