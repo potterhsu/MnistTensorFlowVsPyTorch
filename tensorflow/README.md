@@ -13,7 +13,9 @@
 
 1. (Optional) Test for reading TFRecords files
 
+    ```
     Open `read_tfrecords_sample.ipynb` in Jupyter
+    ```
 
 1. Train
 
@@ -40,7 +42,9 @@
 
 1. (Optional) Try to make an inference
 
+    ```
     Open `inference_sample.ipynb` in Jupyter
+    ```
 
 1. Clean
 
