@@ -3,4 +3,5 @@ val/
 test/
 *.json
 *.tfrecords
+*.lmdb
 
