@@ -2,7 +2,7 @@
 
 * Python 2.7
 * PyTorch
-* Protocol Buffer 3
+* Protocol Buffers 3
 * LMDB
 * Visdom
 
